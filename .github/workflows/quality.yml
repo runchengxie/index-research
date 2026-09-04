@@ -20,13 +20,14 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v10
         with:
           version: latest
           python-version: "3.11"
+          enable-cache: false
 
       - name: Test Python research scripts
         run: >-
@@ -44,7 +45,7 @@ jobs:
           site web/src web/index.html
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
