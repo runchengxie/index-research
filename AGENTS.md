@@ -13,6 +13,8 @@
 * 每个结果必须记录数据窗口、价格回报/总回报口径、流动性门槛和幸存者偏差等限制。
 * 微盘股研究的 Wind 原始序列、Tushare 重建序列和 ETF 代理必须分开保存，并在页面上显示来源和频率。
 * `outputs/microcap/` 是微盘股页面的公开快照目录。页面不得把公开资料参考值标记为 Tushare 原始值或 Wind 实时值。
+* 连续净值使用 `build_microcap_reconstruction.py` 生成。每日先按总市值选取上海、深圳市场最小 400 只股票，再等权计算下一交易日收益。输出的 `reconstructed_daily_nav.csv`、`reconstructed_underwater_periods.csv` 和 `reconstructed_summary.json` 必须保持独立命名。
+* 页面应同时说明两条序列的覆盖范围和口径差异。公开资料参考序列用于长历史展示，Tushare 规则重建序列用于 2015 年以来的连续路径、日频最大回撤和水下时间分析。
 
 ## Git 与多 agent 流程
 
