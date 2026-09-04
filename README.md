@@ -17,6 +17,8 @@
 
 ## 数据资产
 
+微盘股专题对话和格式整理后的研究附录见 [`docs/wind-microcap-index-chat.md`](docs/wind-microcap-index-chat.md)。文档保留原有分析口径，后续正式使用前应结合原始数据重新核验。
+
 - ETF 日线：`~/data/market-data-platform/assets/tushare/etf/daily/etf_all_20150101_20260824_fund_daily`，覆盖 2015-01-05 至 2026-08-24。
 - ETF 复权因子：对应 `etf/adj_factor/...fund_adj`，可用 `close * adj_factor` 的端点比值作为分红/拆分调整后的总回报代理。
 - ETF 基本信息：`etf/reference/etf_fund_basic_20260825.csv`。
