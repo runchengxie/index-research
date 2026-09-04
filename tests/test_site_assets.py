@@ -50,3 +50,23 @@ def test_microcap_dashboard_exposes_requested_visuals():
     html = (ROOT / "site" / "index.html").read_text()
     for element_id in ("microcap-nav-chart", "microcap-annual-chart", "microcap-cagr-chart", "microcap-dd-chart"):
         assert f'id="{element_id}"' in html
+
+
+def test_microcap_dashboard_has_editorial_research_sections():
+    html = (ROOT / "site" / "index.html").read_text()
+    for element_id in (
+        "microcap-rules",
+        "microcap-drivers-chart",
+        "microcap-replication-chart",
+        "microcap-comparison",
+        "microcap-research-notes",
+    ):
+        assert f'id="{element_id}"' in html
+
+
+def test_public_runtime_has_error_fallback_and_legacy_browser_safe_chart_code():
+    app = (ROOT / "site" / "app.js").read_text()
+    assert "renderLoadError" in app
+    assert "rows.at(-1)" not in app
+    assert "window.__INDEX_RESEARCH_READY__" in app
+    assert "function setActiveTab" in app
