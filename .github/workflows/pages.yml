@@ -19,14 +19,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble static site
+      - name: Build React dashboard
+        working-directory: web
         run: |
-          mkdir -p site/outputs
-          cp -R outputs/. site/outputs/
-          touch site/.nojekyll
+          npm ci
+          npm run build
+          touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: web/dist
 
   deploy:
     needs: build
