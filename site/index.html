@@ -3,55 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Index Research｜指数研究</title>
-  <meta name="description" content="中国与全球指数、ETF 长期回报研究展示。">
+  <title>Index Research｜微盘股与指数研究</title>
+  <meta name="description" content="微盘股、指数与 ETF 长期回报研究展示。">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="shell">
-    <nav class="top-nav"><span class="brand">INDEX RESEARCH</span><div><a class="active" href="#overview">研究看板</a><a href="#method">研究口径</a><button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换深色模式">☾</button></div></nav>
-    <header class="hero" id="overview">
-      <div class="eyebrow">指数研究 · 研究快照</div>
-      <h1>长期指数回报，<br><em>先把口径说清楚。</em></h1>
-      <p class="lede">从价格指数、全收益序列到 ETF 复权价，建立一套可复核的长期投资比较框架。</p>
-      <div class="hero-meta"><span id="window-label">2016.09.02 至 2026.08.21</span><span class="dot"></span><span>数据快照：2026.09.04</span></div>
-    </header>
+    <nav class="top-nav"><span class="brand">INDEX RESEARCH</span><div class="tab-nav" aria-label="研究主题"><a class="tab-link active" href="#microcap" data-tab="microcap">微盘股研究</a><a class="tab-link" href="#indices" data-tab="indices">指数长期回报</a><button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换深色模式">☾</button></div></nav>
 
-    <section class="stat-grid" aria-label="研究概览">
-      <article class="stat"><span class="stat-label">可比指数</span><strong id="mapped-count">—</strong><small>有完整十年起止数据</small></article>
-      <article class="stat accent"><span class="stat-label">十年价格回报冠军</span><strong id="price-leader">—</strong><small id="price-leader-value">—</small></article>
-      <article class="stat"><span class="stat-label">代表 ETF</span><strong id="etf-count">—</strong><small>满足流动性筛选</small></article>
-      <article class="stat"><span class="stat-label">可用接口</span><strong id="api-count">—</strong><small>普通、行业、海外和 ETF 映射</small></article>
+    <section id="microcap-panel" class="tab-panel" data-panel="microcap">
+      <header class="hero"><div class="eyebrow">微盘股研究 · 公开资料参考口径</div><h1>微盘股的长期神话，<br><em>也要把路径和代价画出来。</em></h1><p class="lede">围绕万得微盘股日频等权指数，观察收益、回撤、起点效应和真实复制难度。</p><div class="hero-meta"><span id="microcap-window">2000 至 2025</span><span class="dot"></span><span id="microcap-source">数据加载中</span></div></header>
+      <section class="stat-grid" aria-label="微盘股研究概览"><article class="stat accent"><span class="stat-label">累计净值</span><strong id="microcap-nav">—</strong><small>1999 年底 = 1</small></article><article class="stat"><span class="stat-label">2025 年收益</span><strong id="microcap-annual">—</strong><small>完整年度</small></article><article class="stat"><span class="stat-label">滚动 20 年 CAGR</span><strong id="microcap-cagr">—</strong><small>截至最新完整年度</small></article><article class="stat"><span class="stat-label">20 年月频回撤</span><strong id="microcap-dd">—</strong><small>月末净值测算</small></article></section>
+      <section class="section intro"><div><span class="section-no">01</span><h2>先看累计净值</h2></div><p>这条曲线展示长期复利的结果，同时保留数据来源和回溯口径，避免把回测曲线直接当作可复制收益。</p></section>
+      <section class="panel chart-panel"><div class="panel-head"><div><h3>累计净值路径</h3><p>公开资料年度参考序列，1999 年底净值设为 1</p></div><span class="tag warm">NAV</span></div><div id="microcap-nav-chart" class="line-chart" aria-label="微盘股累计净值曲线"></div></section>
+      <section class="panel chart-panel"><div class="panel-head"><div><h3>年度收益</h3><p>少数极端上涨年份对长期 CAGR 有很大影响</p></div><span class="tag">年度回报</span></div><div id="microcap-annual-chart" class="annual-chart" aria-label="微盘股年度收益图"></div></section>
+      <section class="visual-grid"><article class="panel chart-panel"><div class="panel-head"><div><h3>滚动 CAGR</h3><p>不同持有期限的年化收益</p></div></div><div id="microcap-cagr-chart" class="metric-chart"></div></article><article class="panel chart-panel"><div class="panel-head"><div><h3>滚动最大回撤</h3><p>月频结果与日频公开参考值分开显示</p></div></div><div id="microcap-dd-chart" class="metric-chart"></div></article></section>
+      <section class="section intro"><div><span class="section-no">02</span><h2>把收益放回交易现实</h2></div><p>日频版本的高换手、流动性约束、涨跌停和停牌，都可能让理论指数与真实产品之间产生明显差距。</p></section>
+      <section class="coverage-grid"><article class="panel coverage"><h3>研究摘要</h3><div id="microcap-stage-list"></div></article><article class="panel caveat"><h3>数据边界</h3><ul id="microcap-caveats"><li>数据加载中。</li></ul></article></section>
+      <section class="panel detail-panel"><div class="panel-head"><div><h3>年度与滚动指标明细</h3><p>完整数据见公开快照文件</p></div></div><div id="microcap-table" class="table-wrap"></div></section>
     </section>
 
-    <section class="section intro">
-      <div><span class="section-no">01</span><h2>先看能买到的长期结果</h2></div>
-      <p>以下排名把 ETF 基准指数映射到历史日线，展示指数本身的涨跌。价格指数不含分红，适合观察长期风格和主题表现。</p>
+    <section id="indices-panel" class="tab-panel hidden" data-panel="indices">
+      <header class="hero"><div class="eyebrow">指数研究 · 研究快照</div><h1>长期指数回报，<br><em>先把口径说清楚。</em></h1><p class="lede">从价格指数、全收益序列到 ETF 复权价，建立一套可复核的长期投资比较框架。</p><div class="hero-meta"><span id="window-label">2016.09.02 至 2026.08.21</span><span class="dot"></span><span>数据快照：2026.09.04</span></div></header>
+      <section class="stat-grid" aria-label="指数研究概览"><article class="stat"><span class="stat-label">可比指数</span><strong id="mapped-count">—</strong><small>有完整十年起止数据</small></article><article class="stat accent"><span class="stat-label">十年价格回报冠军</span><strong id="price-leader">—</strong><small id="price-leader-value">—</small></article><article class="stat"><span class="stat-label">代表 ETF</span><strong id="etf-count">—</strong><small>满足流动性筛选</small></article><article class="stat"><span class="stat-label">可用接口</span><strong id="api-count">—</strong><small>普通、行业、海外和 ETF 映射</small></article></section>
+      <section class="section intro"><div><span class="section-no">01</span><h2>先看能买到的长期结果</h2></div><p>以下排名把 ETF 基准指数映射到历史日线，展示指数本身的涨跌。价格指数不含分红，适合观察长期风格和主题表现。</p></section>
+      <section class="panel chart-panel"><div class="panel-head"><div><h3>十年价格回报排名</h3><p>2016.09.02 至 2026.08.21，按年化价格回报排序</p></div><span class="tag">价格回报</span></div><div id="price-chart" class="bar-chart" aria-label="十年价格回报排名图"></div><p class="caption">主题和行业指数需要结合分散程度、回撤和可投资性一起阅读。</p></section>
+      <section class="panel detail-panel"><div class="panel-head"><div><h3>价格指数明细</h3><p>展示代码、累计价格回报、年化回报和数据接口</p></div></div><div id="price-table" class="table-wrap"></div></section>
+      <section class="section intro split-intro"><div><span class="section-no">02</span><h2>再看投资者实际拿到的代理结果</h2></div><p>ETF 复权价可以近似反映持有者的总回报，同时会受到管理费、跟踪误差、汇率和交易成本影响。</p></section>
+      <section class="panel chart-panel"><div class="panel-head"><div><h3>代表 ETF：十年复权回报</h3><p>每个指数选择流动性最高的代表产品</p></div><span class="tag warm">ETF 代理</span></div><div id="etf-chart" class="bar-chart" aria-label="代表 ETF 十年复权回报图"></div><div class="legend"><span class="legend-dot coral"></span>ETF 复权总回报 <span class="legend-dot ink"></span>对应指数价格回报</div></section>
+      <section class="panel detail-panel"><div class="panel-head"><div><h3>ETF 代表明细</h3><p>展示 ETF 回报、指数回报、最大回撤和近 60 日成交额中位数</p></div></div><div id="etf-table" class="table-wrap"></div></section>
+      <section class="section intro" id="method"><div><span class="section-no">03</span><h2>把结果放回数据边界里</h2></div><p>这是一套持续扩充的研究底座，后续会加入全收益指数、滚动窗口、估值、回撤、波动率和可投资性指标。</p></section>
+      <section class="coverage-grid"><article class="panel coverage"><h3>接口覆盖</h3><div id="api-list"></div></article><article class="panel caveat"><h3>阅读提示</h3><ul><li>指数价格回报不含分红。</li><li>ETF 复权价是总回报近似，包含产品费用和跟踪误差。</li><li>当前 ETF 样本可能存在幸存者偏差。</li><li>正式比较还需要全收益指数、滚动年化回报、回撤和费用数据。</li></ul></article></section>
     </section>
-    <section class="panel chart-panel">
-      <div class="panel-head"><div><h3>十年价格回报排名</h3><p>2016.09.02 至 2026.08.21，按年化价格回报排序</p></div><span class="tag">价格回报</span></div>
-      <div id="price-chart" class="bar-chart" aria-label="十年价格回报排名图"></div>
-      <p class="caption">主题和行业指数容易集中于少数行业或公司，排名结果需要结合分散程度、回撤和可投资性一起阅读。</p>
-    </section>
-    <section class="panel detail-panel"><div class="panel-head"><div><h3>价格指数明细</h3><p>展示代码、累计价格回报、年化回报和数据接口</p></div></div><div id="price-table" class="table-wrap"></div></section>
-
-    <section class="section intro split-intro">
-      <div><span class="section-no">02</span><h2>再看投资者实际拿到的代理结果</h2></div>
-      <p>ETF 复权价可以近似反映持有者的总回报，同时会受到管理费、跟踪误差、汇率和交易成本影响。</p>
-    </section>
-    <section class="panel chart-panel">
-      <div class="panel-head"><div><h3>代表 ETF：十年复权回报</h3><p>每个指数选择流动性最高的代表产品，按年化复权回报排序</p></div><span class="tag warm">ETF 代理</span></div>
-      <div id="etf-chart" class="bar-chart" aria-label="代表 ETF 十年复权回报图"></div>
-      <div class="legend"><span class="legend-dot coral"></span>ETF 复权总回报 <span class="legend-dot ink"></span>对应指数价格回报</div>
-    </section>
-    <section class="panel detail-panel"><div class="panel-head"><div><h3>ETF 代表明细</h3><p>展示 ETF 回报、指数回报、最大回撤和近 60 日成交额中位数</p></div></div><div id="etf-table" class="table-wrap"></div></section>
-
-    <section class="section intro" id="method"><div><span class="section-no">03</span><h2>把结果放回数据边界里</h2></div><p>这是一套持续扩充的研究底座，后续会加入全收益指数、滚动窗口、估值、回撤、波动率和可投资性指标。</p></section>
-    <section class="coverage-grid">
-      <article class="panel coverage"><h3>接口覆盖</h3><div id="api-list"></div></article>
-      <article class="panel caveat"><h3>阅读提示</h3><ul><li>指数价格回报不含分红。</li><li>ETF 复权价是总回报近似，包含产品费用和跟踪误差。</li><li>当前 ETF 样本保留仍上市且满足流动性门槛的产品，可能存在幸存者偏差。</li><li>正式比较还需要全收益指数、滚动十年年化回报、回撤和费用数据。</li></ul></article>
-    </section>
-    <footer><span>指数研究</span><a href="https://github.com/runchengxie/index-research">查看 GitHub 仓库 ↗</a><span>数据来源：Tushare 快照</span></footer>
+    <footer><span>指数研究</span><a href="https://github.com/runchengxie/index-research">查看 GitHub 仓库 ↗</a><span>数据来源：Tushare 与公开资料快照</span></footer>
   </main>
   <script src="app.js"></script>
 </body>
