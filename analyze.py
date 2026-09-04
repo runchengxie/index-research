@@ -8,12 +8,18 @@ is reported separately because it is price return only.
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 
 import duckdb
 
 
-DEFAULT_DATA = Path("/home/richard/data/market-data-platform/assets/tushare")
+DEFAULT_DATA = Path(
+    os.environ.get(
+        "INDEX_RESEARCH_TUSHARE_ROOT",
+        str(Path.home() / "data" / "market-data-platform" / "assets" / "tushare"),
+    )
+)
 
 
 def main() -> None:

@@ -30,12 +30,23 @@
 4. 只筛选了当前仍上市、股票型且名称包含 ETF 的产品；这避免把已清盘产品和杠杆分级份额混在一起，但会带来一定的幸存者偏差。
 5. 端点按已有交易日精确取值，后续正式报告应增加最大回撤、滚动十年 CAGR、起止日敏感性和汇率/费用说明。
 
+## 项目与数据目录
+
+项目代码位于 `~/code/index-research`。项目专属的完整派生数据归档在 `~/data/index-research`；GitHub 仓库只保留可公开分享的代码和较小的 CSV 快照，原始市场数据仍由现有的 `market-data-platform` 统一维护。
+
+本项目不保存本机绝对路径、访问令牌、内网地址或其他机器身份信息。运行时默认按当前用户的 home 目录定位数据，也可以用环境变量覆盖：
+
+```bash
+export INDEX_RESEARCH_TUSHARE_ROOT="$HOME/data/market-data-platform/assets/tushare"
+export INDEX_RESEARCH_ETF_BASIC="$HOME/data/market-data-platform/assets/tushare/etf/reference/etf_fund_basic_20260825.csv"
+```
+
 ## 运行
 
 需要当前市场数据平台虚拟环境中的 DuckDB：
 
 ```bash
-/home/richard/code/research-workspace/market-data-platform/.venv/bin/python analyze.py
+python analyze.py
 ```
 
 输出：
@@ -45,7 +56,7 @@
 
 ## 是否值得继续写代码
 
-值得。最有价值的下一步不是继续堆更多 ETF，而是补齐“指数全收益序列 + 可投资产品净值/复权价”的统一数据模型，再做 10 年、15 年和滚动窗口排名。代码放在 `~/code/index-total-return-study` 是合适的：数据留在 `~/data`，研究逻辑、参数和输出分开，之后也容易接入现有 market-data-platform。
+值得。最有价值的下一步不是继续堆更多 ETF，而是补齐“指数全收益序列 + 可投资产品净值/复权价”的统一数据模型，再做 10 年、15 年和滚动窗口排名。代码放在 `~/code/index-research`，项目派生数据放在 `~/data/index-research`，原始数据继续留在现有 `market-data-platform` 中，研究逻辑、参数和输出分开，之后也容易扩展到估值、回撤、波动率、风格、行业和可投资性等维度。
 
 ## Tushare 可扩展的指数数据
 

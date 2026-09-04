@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 
@@ -28,10 +29,20 @@ def main() -> None:
     catalog = pd.read_csv(linked / "linked_index_catalog.csv", dtype={"ts_code": str})
     etf_basic = pd.read_csv(output / "index_catalog.csv", dtype={"ts_code": str})
     # The ETF reference file is not part of the index catalog; use the local asset directly.
-    etf_basic = pd.read_csv(
-        "/home/richard/data/market-data-platform/assets/tushare/etf/reference/etf_fund_basic_20260825.csv",
-        dtype={"ts_code": str},
+    etf_basic_path = os.environ.get(
+        "INDEX_RESEARCH_ETF_BASIC",
+        str(
+            Path.home()
+            / "data"
+            / "market-data-platform"
+            / "assets"
+            / "tushare"
+            / "etf"
+            / "reference"
+            / "etf_fund_basic_20260825.csv"
+        ),
     )
+    etf_basic = pd.read_csv(etf_basic_path, dtype={"ts_code": str})
     index_names = catalog["indx_name"].dropna().astype(str).unique().tolist()
     eligible = etf_basic[
         etf_basic["status"].eq("L")
@@ -52,8 +63,14 @@ def main() -> None:
     )
 
     con = duckdb.connect()
-    etf_daily = "/home/richard/data/market-data-platform/assets/tushare/etf/daily/etf_all_20150101_20260824_fund_daily/data/**/*.parquet"
-    etf_adj = "/home/richard/data/market-data-platform/assets/tushare/etf/adj_factor/etf_all_20150101_20260824_fund_adj/data/**/*.parquet"
+    tushare_root = Path(
+        os.environ.get(
+            "INDEX_RESEARCH_TUSHARE_ROOT",
+            str(Path.home() / "data" / "market-data-platform" / "assets" / "tushare"),
+        )
+    )
+    etf_daily = str(tushare_root / "etf/daily/etf_all_20150101_20260824_fund_daily/data/**/*.parquet")
+    etf_adj = str(tushare_root / "etf/adj_factor/etf_all_20150101_20260824_fund_adj/data/**/*.parquet")
     pair_csv = str(linked / "etf_index_pairing.csv")
     etf_metrics = con.sql(f"""
         with pairs as (select * from read_csv_auto('{pair_csv}')),
