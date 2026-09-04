@@ -19,11 +19,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: latest
+          python-version: "3.11"
+      - name: Test Python research scripts
+        run: >-
+          PYTHONPATH=. uv run --with pytest --with pandas --with pyarrow --with numpy
+          --with duckdb --with tushare pytest -q tests
+      - name: Check Python syntax
+        run: >-
+          python -m py_compile analyze.py fetch_linked_indices.py pair_and_rank.py
+          build_microcap_reconstruction.py build_microcap_snapshot.py
+      - name: Scan public files for local secrets and paths
+        run: >-
+          ! rg -n '/home/|/Users/|TUSHARE_TOKEN=|fast\\.xiaodefa\\.cn'
+          site web/src web/index.html
       - name: Build React dashboard
         working-directory: web
         run: |
           npm ci
           npm run build
+          npm audit --audit-level high
           touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
