@@ -1,0 +1,6 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Large local research asset; the site uses the derived CSV outputs.
+outputs/linked_indices/linked_index_daily.parquet
