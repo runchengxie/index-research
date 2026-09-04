@@ -41,6 +41,8 @@ export INDEX_RESEARCH_TUSHARE_ROOT="$HOME/data/market-data-platform/assets/tusha
 export INDEX_RESEARCH_ETF_BASIC="$HOME/data/market-data-platform/assets/tushare/etf/reference/etf_fund_basic_20260825.csv"
 ```
 
+协作约定见 [`AGENTS.md`](AGENTS.md)：独立任务使用独立 worktree 和分支，通过 PR 合并到 `main`；完整派生数据归档在 `~/data/index-research`，仓库只保留可公开分享的快照。
+
 ## 运行
 
 需要当前市场数据平台虚拟环境中的 DuckDB：

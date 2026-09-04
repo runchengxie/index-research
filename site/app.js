@@ -1,7 +1,7 @@
 const DATA = {
-  price: '../outputs/linked_indices/ten_year_price_returns.csv',
-  etf: '../outputs/linked_indices/paired_index_etf_representatives.csv',
-  api: '../outputs/index_api_probe.csv',
+  price: 'outputs/linked_indices/ten_year_price_returns.csv',
+  etf: 'outputs/linked_indices/paired_index_etf_representatives.csv',
+  api: 'outputs/index_api_probe.csv',
 };
 
 function csv(text) {
