@@ -23,7 +23,9 @@
 
 ## 数据资产
 
-微盘股公开快照位于 `outputs/microcap/`，包括年度收益、累计净值、滚动 CAGR、滚动最大回撤和来源说明。首期采用公开资料参考口径，后续将把 Tushare 重建结果作为单独口径接入。
+微盘股公开快照位于 `outputs/microcap/`，包括年度收益、累计净值、滚动 CAGR、滚动最大回撤和来源说明。当前页面还提供 `reconstructed_daily_nav.csv` 和 `reconstructed_underwater_periods.csv`，它们来自本地 Tushare 日线数据的规则重建，覆盖 2015 年以来的连续净值和水下区间。
+
+运行 `uv run --project ~/code/market-data-platform --extra duckdb python build_microcap_reconstruction.py` 可以按默认本地数据路径重新生成这组文件。重建结果只用于研究，不等同于 Wind 8841431.WI 官方指数，当前也没有模拟交易成本、涨跌停成交限制和资金容量。
 
 微盘股专题对话和格式整理后的研究附录见 [`docs/wind-microcap-index-chat.md`](docs/wind-microcap-index-chat.md)。文档保留原有分析口径，后续正式使用前应结合原始数据重新核验。
 
