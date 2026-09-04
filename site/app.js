@@ -9,14 +9,18 @@ function csv(text) {
   for(let i=0;i<text.length;i++){const c=text[i],n=text[i+1]; if(c==='"'&&quoted&&n==='"'){cell+='"';i++;} else if(c==='"'){quoted=!quoted;} else if(c===','&&!quoted){row.push(cell);cell='';} else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&n==='\n')i++;row.push(cell);if(row.some(Boolean))rows.push(row);row=[];cell='';} else cell+=c;} if(cell||row.length){row.push(cell);rows.push(row);} const head=rows.shift(); return rows.map(r=>Object.fromEntries(head.map((h,i)=>[h,r[i]??''])));
 }
 const pct=x=>(Number(x)*100).toFixed(1)+'%';
+const ratio=x=>(Number(x)*100).toFixed(0)+'%';
 const money=x=>Number(x).toLocaleString('zh-CN');
 function bars(el, rows, label, value, cls='') { const max=Math.max(...rows.map(r=>Number(r[value]))); el.innerHTML=rows.map(r=>`<div class="bar-row"><div class="bar-label" title="${r[label]}">${r[label]}</div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${Math.max(2,Number(r[value])/max*100)}%"></div></div><div class="bar-value">${pct(r[value])}</div></div>`).join(''); }
 function dualBars(el, rows) { const max=Math.max(...rows.map(r=>Math.max(Number(r.etf_cagr),Number(r.index_cagr)))); el.innerHTML=rows.map(r=>`<div class="bar-row"><div class="bar-label" title="${r.name}">${r.name}</div><div class="dual-wrap"><div class="dual-fill" style="width:${Math.max(2,Number(r.etf_cagr)/max*100)}%"></div><div class="dual-index" style="width:${Math.max(2,Number(r.index_cagr)/max*100)}%"></div></div><div class="bar-value">${pct(r.etf_cagr)}</div></div>`).join(''); }
+function table(el, headers, rows) { el.innerHTML=`<table class="data-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map((cell,index)=>`<td class="${index===0?'':'muted-cell'}">${cell}</td>`).join('')}</tr>`).join('')}</tbody></table>`; }
 function load(path){return fetch(path).then(r=>r.text()).then(csv)}
 Promise.all([load(DATA.price),load(DATA.etf),load(DATA.api)]).then(([price,etf,api])=>{
   price.sort((a,b)=>Number(b.cagr)-Number(a.cagr)); etf.sort((a,b)=>Number(b.etf_cagr)-Number(a.etf_cagr));
-  const top=price.slice(0,10); bars(document.querySelector('#price-chart'),top,'indx_name','cagr');
-  const e=etf.slice(0,10); dualBars(document.querySelector('#etf-chart'),e);
+  const top=price.slice(0,12); bars(document.querySelector('#price-chart'),top,'indx_name','cagr');
+  const e=etf.slice(0,12); dualBars(document.querySelector('#etf-chart'),e);
+  table(document.querySelector('#price-table'),['代码','指数','累计回报','年化回报','接口'],price.slice(0,18).map(r=>[r.ts_code,r.indx_name,ratio(r.price_return),pct(r.cagr),r.api]));
+  table(document.querySelector('#etf-table'),['ETF','跟踪指数','ETF 年化','指数年化','ETF 回撤','成交额中位数'],etf.slice(0,18).map(r=>[`${r.ts_code} ${r.name}`,r.matched_index_name,pct(r.etf_cagr),pct(r.index_cagr),pct(r.etf_max_drawdown),`${money(Math.round(Number(r.median_amount_60d)*1000))} 元`]));
   document.querySelector('#price-leader').textContent=top[0].indx_name.replace('中证','').replace('指数','');
   document.querySelector('#price-leader-value').textContent=`十年年化价格回报 ${pct(top[0].cagr)}`;
   document.querySelector('#mapped-count').textContent=price.length;

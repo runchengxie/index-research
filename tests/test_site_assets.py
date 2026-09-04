@@ -23,3 +23,12 @@ def test_public_site_uses_subpath_safe_data_urls():
     app = (ROOT / "site" / "app.js").read_text()
     assert "'outputs/linked_indices/" in app
     assert "'../outputs/" not in app
+
+
+def test_public_site_exposes_detail_tables_for_research():
+    html = (ROOT / "site" / "index.html").read_text()
+    app = (ROOT / "site" / "app.js").read_text()
+    assert 'id="price-table"' in html
+    assert 'id="etf-table"' in html
+    assert "data-table" in app
+    assert "median_amount_60d" in app
