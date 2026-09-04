@@ -8,4 +8,5 @@ const styles=readFileSync(new URL("./styles.css",import.meta.url),"utf8");
 test("看板保留两个研究主题并整理微盘研究内容",()=>{assert.match(app,/微盘股研究/);assert.match(app,/指数长期回报/);assert.match(app,/收益来源/);assert.match(app,/复制难度/);assert.match(app,/research-note/)});
 test("图表提供轴向 tooltip、缩放和自适应重绘",()=>{assert.match(chart,/tooltip/);assert.match(chart,/dataZoom/);assert.match(chart,/resize/);assert.match(styles,/--paper:/);assert.match(styles,/site-nav/)});
 test("两个 Tab 都包含完整研究数据区域",()=>{assert.match(app,/rolling_cagr/);assert.match(app,/rolling_drawdown/);assert.match(app,/paired_index_etf_representatives/);assert.match(app,/ETF 代表明细/)});
+test("ETF 长期表现图使用 ETF 名称作为横轴",()=>{assert.match(app,/categoryKey="name"/);assert.match(chart,/categoryKey\?:string/)});
 test("微盘页面明确说明规则复现口径",()=>{assert.match(app,/规则复现研究/);assert.match(app,/不等同于 Wind 官方指数/);assert.match(app,/连续净值/);assert.match(app,/最长水下区间/)});
