@@ -4,6 +4,8 @@
 
 [在线研究看板](https://runchengxie.github.io/index-research/) · [微盘股专题说明](docs/wind-microcap-index-chat.md)
 
+网页前端位于 `web/`，采用 React、Vite 和 ECharts。页面使用仓库内静态快照，微盘股研究与指数长期回报分别位于两个研究 Tab。图表支持悬停提示、缩放和移动端自适应。
+
 ## 当前结论（基于本地数据）
 
 截至本次核查，`~/data` 里的数据足以支持十年 ETF 代理总回报的初版研究。完整的十五年含分红指数排名仍需要补充更早的全收益数据。
