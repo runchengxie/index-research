@@ -68,6 +68,32 @@ python analyze.py
 - `outputs/etf_proxy_returns.csv`
 - `outputs/a_share_index_price_returns.csv`
 
+### 现金流指数展示
+
+`analyze_cashflow.py` produces a comparable return snapshot for the
+documented cash-flow family: 980092, 932365–932369, 931082 and 932457. It
+includes last week, last month, six months, YTD, rolling one/three/five/ten/
+fifteen years, 2025, and since 2024-09-24, plus a separate rebalance-frequency
+table. Where CSI supplies a CNY010/HKD210 derivative, the calculation uses the
+official gross total-return series with dividends reinvested; otherwise it
+falls back to the price index and labels the result accordingly. The
+calculation uses the latest available date in the local cache.
+
+```bash
+python analyze_cashflow.py
+```
+
+To refresh the family directly from TuShare when credentials are configured:
+
+```bash
+python fetch_cashflow_indices.py
+python analyze_cashflow.py --input outputs/cashflow_indices/cashflow_index_daily.parquet
+```
+
+The current official A-share cash-flow family is quarterly; 932457 Hong Kong
+Connect Cash Flow is semiannual. 980092 changed to quarterly effective
+2024-08-15, so older history should not be treated as one unchanged rule.
+
 ## 是否值得继续写代码
 
 值得继续。下一步应优先补齐指数全收益序列与可投资产品净值、复权价的统一数据模型，再开展 10 年、15 年和滚动窗口排名。代码放在 `~/code/index-research`，项目派生数据放在 `~/data/index-research`，原始数据继续由现有 `market-data-platform` 统一维护。研究逻辑、参数和输出分开后，也方便扩展到估值、回撤、波动率、风格、行业和可投资性等维度。
