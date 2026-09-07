@@ -5,3 +5,6 @@ __pycache__/
 
 # Large local research asset; the site uses the derived CSV outputs.
 outputs/linked_indices/linked_index_daily.parquet
+
+# Reproducible local research asset; keep the public CSV derivatives instead.
+outputs/cashflow_indices/cashflow_index_daily.parquet
