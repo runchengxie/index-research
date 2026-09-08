@@ -1,8 +1,8 @@
 # 过去十年/十五年含分红指数研究
 
-> **项目入口已迁移：** 本项目的公开研究内容已被
-> [`market-research`](https://github.com/runchengxie/market-research) 吸收，统一页面位于
-> [runchengxie.github.io/market-research](https://runchengxie.github.io/market-research/)。本仓库保留历史代码、提交记录和原始研究文档；新增的页面与数据快照以 `market-research` 为准。
+项目入口已迁移。本项目的公开研究内容已经并入
+[`market-research`](https://github.com/runchengxie/market-research)，统一页面位于
+[runchengxie.github.io/market-research](https://runchengxie.github.io/market-research/)。本仓库保留历史代码、提交记录和原始研究文档，新增页面与数据快照以 `market-research` 为准。
 
 当前页面包含两个研究标签页：默认进入微盘股研究，也可以切换到指数长期回报研究。
 
