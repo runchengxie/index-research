@@ -1,12 +1,18 @@
 # 过去十年/十五年含分红指数研究
 
+> **DEPRECATED / 已弃用**
+>
+> 本仓库已停止作为独立项目维护和发布。请迁移到
+> [market-research](https://github.com/runchengxie/market-research)，该项目是
+> 指数、ETF、微盘和现金流研究的 canonical / superseding 入口。
+
 项目入口已迁移。本项目的公开研究内容已经并入
 [`market-research`](https://github.com/runchengxie/market-research)，统一页面位于
 [runchengxie.github.io/market-research](https://runchengxie.github.io/market-research/)。本仓库保留历史代码、提交记录和原始研究文档，新增页面与数据快照以 `market-research` 为准。
 
 当前页面包含两个研究标签页：默认进入微盘股研究，也可以切换到指数长期回报研究。
 
-[在线研究看板](https://runchengxie.github.io/index-research/) · [微盘股专题说明](docs/wind-microcap-index-chat.md)
+[统一在线研究看板](https://runchengxie.github.io/market-research/) · [历史微盘股专题说明](docs/wind-microcap-index-chat.md)
 
 网页前端位于 `web/`，采用 React、Vite 和 ECharts。页面使用仓库内静态快照，微盘股研究与指数长期回报分别位于两个研究 Tab。图表支持悬停提示、缩放和移动端自适应。
 
